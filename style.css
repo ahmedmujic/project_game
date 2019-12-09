@@ -1,0 +1,55 @@
+
+
+ 
+
+#back
+{
+    background-image: url('assets/background.png');
+    width: 1200px;
+    height: 700px;
+   
+
+}
+#missle
+{
+   
+    width: 1200px;
+    height: 700px;
+    position: absolute;
+}
+.missile1
+{
+   
+    background-image: url(assets/missile1.png);
+    
+    position: absolute;
+    height: 10px;
+    width: 5px;
+}
+#ship
+{
+    background-image: url(assets/hero.png);
+    height: 40px;
+    width: 50px;
+    position:absolute;
+    top: 640px;
+    left: 60px;
+    
+}
+    
+    
+    
+div#enemyy
+        {
+            width: 1200px;
+    height: 700px;
+    position: absolute;
+            
+        }
+    div.enemy
+        {
+    width: 50px;
+    height: 50px;
+    background-image: url('assets/enemy.png');
+    position: absolute; 
+        }   
