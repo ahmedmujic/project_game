@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Space Invaders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+ 
+        </style>
+        <div id="back">
+   <div id="ship"></div>
+    <div id="enemyy"></div>
+    <div id="missles"></div></div>
+    <script>
+
+        var brodic=
+            {left: 60,
+            top: 640}
+            ;
+        var raketice=[];
+        var enemies = [
+           
+            { left: 200, top: 175 },
+            { left: 300, top: 175 },
+            { left: 400, top: 175 },
+            { left: 500, top: 175 },
+            { left: 600, top: 175 },
+            { left: 700, top: 175 },
+            { left: 800, top: 175 },
+            { left: 900, top: 175 }
+        ];
+      document.onkeydown=function(e)
+       { 
+            if(e.keyCode==37)
+            {
+                
+                brodic.left=brodic.left-5;
+            }
+            else if(e.keyCode==39)
+            {
+                brodic.left=brodic.left+5;
+            }
+            else if(e.keyCode==32)
+            {
+                raketice.push({left:brodic.left+20,top:brodic.top-20});
+                draw_raketice();
+        }       
+        
+        nacrtaj_brodic();
+         
+    }
+    
+    function nacrtaj_brodic() {
+            document.getElementById('ship').style.left = brodic.left + 'px';
+            document.getElementById('ship').style.top = brodic.top + 'px';
+        } 
+    function draw_raketice()
+    {
+        document.getElementById('missles').innerHTML = ""
+            for(var i = 0 ; i < raketice.length ; i++ ) {
+                document.getElementById('missles').innerHTML += `<div class='missile1' style='left:${raketice[i].left}px; top:${raketice[i].top}px'></div>`;
+            
+            
+            }
+    }
+    function move_raketice() {
+            for(var i = 0 ; i < raketice.length ; i++ ) {
+                raketice[i].top = raketice[i].top - 5;
+            }
+        }
+        function nepdrw() {
+            document.getElementById('enemyy').innerHTML = ""
+            for(var i = 0 ; i < enemies.length ; i++ ) {
+                document.getElementById('enemyy').innerHTML += `<div class='enemy' style='left:${enemies[i].left}px; top:${enemies[i].top}px'></div>`;
+            }
+        }
+        function nep() {
+           
+            for(var i = 0 ; i < enemies.length ; i++ ) {
+                enemies[i].top = enemies[i].top + 3;
+               
+                
+            }
+        }var score=0;
+        function sudar() {
+            for (var i = 0; i < enemies.length; i++) {
+                for (var j = 0; j < raketice.length; j++) {
+                    if ( 
+                        raketice[j].left >= enemies[i].left  &&
+                        raketice[j].left <= (enemies[i].left + 50)  &&
+                        raketice[j].top <= (enemies[i].top + 50)  &&
+                        raketice[j].top >= enemies[i].top
+                    ) {
+                        enemies.splice(i, 1);
+                        raketice.splice(j, 1);
+                        score++;
+                    }
+                   
+             }
+            }
+        }var b=0;
+    function end()
+    {
+        for (var j = 0; j < enemies.length; j++) 
+        {
+            if(enemies[j].top>=600) 
+            {
+                
+                b++;
+                clearTimeout(gameLoop);
+               if(b==1){ alert("GAME OVER");alert("your score: "+score);if(score==enemies.length)alert("TOP SCORE!!!");}
+               
+               
+            }
+        }
+    }
+    function gameLoop() {
+            setTimeout(gameLoop, 50)
+            move_raketice();
+            draw_raketice(); 
+            nepdrw();
+            nep();
+            sudar();
+            end();
+            
+        }
+        
+        gameLoop();
+    
+    </script>
+</body>
+</html>
